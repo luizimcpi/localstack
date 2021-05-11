@@ -47,7 +47,43 @@ aws --endpoint-url=http://localhost:4566 sqs list-queues
 aws --endpoint-url=http://localhost:4566 sns create-topic --name test_topic
 ```
 
+## SUBSCRIBE TO A TOPIC USING EMAIL
+```
+aws --endpoint-url=http://localhost:4566 sns subscribe --topic-arn arn:aws:sns:us-east-1:000000000000:test_topic --protocol email --notification-endpoint test@email.com
+```
+
+## SUBSCRIBE TO A TOPIC USING HTTP
+```
+aws --endpoint-url=http://localhost:4566 sns subscribe --topic-arn arn:aws:sns:us-east-1:000000000000:test_topic --protocol http --notification-endpoint http://localhost:8080/sns-event
+```
+
+## SUBSCRIBE TO A TOPIC USING HTTPS
+```
+aws --endpoint-url=http://localhost:4566 sns subscribe --topic-arn arn:aws:sns:us-east-1:000000000000:test_topic --protocol https --notification-endpoint http://localhost:8080/sns-event
+```
+
+## PUBLISH TO A TOPIC
+```
+aws --endpoint-url=http://localhost:4566 sns publish --topic-arn arn:aws:sns:us-east-1:000000000000:test_topic --message "Hello World!"
+```
+
+## UNSUBSCRIBE FROM A TOPIC
+```
+aws --endpoint-url=http://localhost:4566 sns unsubscribe --subscription-arn *arn:aws:sns:us-east-1:000000000000:test_topic:43aa4105-85ba-4c11-8c7c-e4356e6fb419
+*You can take this info using list subscriptions command
+```
+
+## LIST SUBSCRIPTIONS
+```
+aws --endpoint-url=http://localhost:4566 sns list-subscriptions
+```
+
 ## LIST TOPICS
 ```
 aws --endpoint-url=http://localhost:4566 sns list-topics
+```
+
+## DELETE TOPIC
+```
+aws --endpoint-url=http://localhost:4566 sns delete-topic --topic-arn arn:aws:sns:us-east-1:000000000000:test_topic
 ```
